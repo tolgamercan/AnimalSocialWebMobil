@@ -1,0 +1,133 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using AnimalSocialWebApi.DAL;
+
+namespace AnimalSocialWebApi.Controllers
+{
+    public class AnimalsController : ApiController
+    {
+        private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
+
+        // GET: api/Animals
+        public IQueryable<Animals> GetAnimals()
+        {
+            return db.Animals;
+        }
+
+        // GET: api/Animals/5
+        [ResponseType(typeof(Animals))]
+        public IHttpActionResult GetAnimals(string id)
+        {
+            Animals animals = db.Animals.Find(id);
+            if (animals == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(animals);
+        }
+
+        // PUT: api/Animals/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutAnimals(string id, Animals animals)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != animals.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(animals).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AnimalsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Animals
+        [ResponseType(typeof(Animals))]
+        public IHttpActionResult PostAnimals(Animals animals)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Animals.Add(animals);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (AnimalsExists(animals.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = animals.Id }, animals);
+        }
+
+        // DELETE: api/Animals/5
+        [ResponseType(typeof(Animals))]
+        public IHttpActionResult DeleteAnimals(string id)
+        {
+            Animals animals = db.Animals.Find(id);
+            if (animals == null)
+            {
+                return NotFound();
+            }
+
+            db.Animals.Remove(animals);
+            db.SaveChanges();
+
+            return Ok(animals);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool AnimalsExists(string id)
+        {
+            return db.Animals.Count(e => e.Id == id) > 0;
+        }
+    }
+}

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AnimalSocialDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="RaceId" Type="int" />
+          <Property Name="BirtOfDate" Type="date" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="HealtyCertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Vaccine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Period" Type="int" />
+          <Property Name="FirstPractice" Type="int" />
+          <Property Name="Repetition" Type="int" />
+          <Property Name="YearlyRepetiton" Type="decimal" Precision="2" Scale="1" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="128" />
+          <Property Name="VaccineType" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="VaccineHealtyCertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaccineId" Type="int" Nullable="false" />
+          <Property Name="HealtyCertificateId" Type="nvarchar" MaxLength="128" />
+          <Property Name="PracticeDate" Type="date" />
+          <Property Name="IsPractice" Type="bit" />
+        </EntityType>
+        <Association Name="fk_HealtyCertificateId">
+          <End Role="HealtyCertificate" Type="Self.HealtyCertificate" Multiplicity="0..1" />
+          <End Role="VaccineHealtyCertificate" Type="Self.VaccineHealtyCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealtyCertificate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VaccineHealtyCertificate">
+              <PropertyRef Name="HealtyCertificateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Id">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
+          <End Role="HealtyCertificate" Type="Self.HealtyCertificate" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HealtyCertificate">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RaceId">
+          <End Role="Race" Type="Self.Race" Multiplicity="0..1" />
+          <End Role="Animals" Type="Self.Animals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animals">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VaccineId">
+          <End Role="Vaccine" Type="Self.Vaccine" Multiplicity="1" />
+          <End Role="VaccineHealtyCertificate" Type="Self.VaccineHealtyCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaccine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VaccineHealtyCertificate">
+              <PropertyRef Name="VaccineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnimalSocialDbModelStoreContainer">
+          <EntitySet Name="Animals" EntityType="Self.Animals" Schema="AnimalSocialDbAdmin" store:Type="Tables" />
+          <EntitySet Name="HealtyCertificate" EntityType="Self.HealtyCertificate" Schema="AnimalSocialDbAdmin" store:Type="Tables" />
+          <EntitySet Name="Race" EntityType="Self.Race" Schema="AnimalSocialDbAdmin" store:Type="Tables" />
+          <EntitySet Name="Vaccine" EntityType="Self.Vaccine" Schema="AnimalSocialDbAdmin" store:Type="Tables" />
+          <EntitySet Name="VaccineHealtyCertificate" EntityType="Self.VaccineHealtyCertificate" Schema="AnimalSocialDbAdmin" store:Type="Tables" />
+          <AssociationSet Name="fk_HealtyCertificateId" Association="Self.fk_HealtyCertificateId">
+            <End Role="HealtyCertificate" EntitySet="HealtyCertificate" />
+            <End Role="VaccineHealtyCertificate" EntitySet="VaccineHealtyCertificate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Id" Association="Self.fk_Id">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="HealtyCertificate" EntitySet="HealtyCertificate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RaceId" Association="Self.fk_RaceId">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="Animals" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VaccineId" Association="Self.fk_VaccineId">
+            <End Role="Vaccine" EntitySet="Vaccine" />
+            <End Role="VaccineHealtyCertificate" EntitySet="VaccineHealtyCertificate" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AnimalSocialDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="RaceId" Type="Int32" />
+          <Property Name="BirtOfDate" Type="DateTime" Precision="0" />
+          <Property Name="OwnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HealtyCertificate" Relationship="Self.fk_Id" FromRole="Animals" ToRole="HealtyCertificate" />
+          <NavigationProperty Name="Race" Relationship="Self.fk_RaceId" FromRole="Animals" ToRole="Race" />
+        </EntityType>
+        <EntityType Name="HealtyCertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="Self.fk_Id" FromRole="HealtyCertificate" ToRole="Animals" />
+          <NavigationProperty Name="VaccineHealtyCertificate" Relationship="Self.fk_HealtyCertificateId" FromRole="HealtyCertificate" ToRole="VaccineHealtyCertificate" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="Self.fk_RaceId" FromRole="Race" ToRole="Animals" />
+        </EntityType>
+        <EntityType Name="Vaccine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="FirstPractice" Type="Int32" />
+          <Property Name="Repetition" Type="Int32" />
+          <Property Name="YearlyRepetiton" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="Comment" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VaccineType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VaccineHealtyCertificate" Relationship="Self.fk_VaccineId" FromRole="Vaccine" ToRole="VaccineHealtyCertificate" />
+        </EntityType>
+        <EntityType Name="VaccineHealtyCertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VaccineId" Type="Int32" Nullable="false" />
+          <Property Name="HealtyCertificateId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PracticeDate" Type="DateTime" Precision="0" />
+          <Property Name="IsPractice" Type="Boolean" />
+          <NavigationProperty Name="HealtyCertificate" Relationship="Self.fk_HealtyCertificateId" FromRole="VaccineHealtyCertificate" ToRole="HealtyCertificate" />
+          <NavigationProperty Name="Vaccine" Relationship="Self.fk_VaccineId" FromRole="VaccineHealtyCertificate" ToRole="Vaccine" />
+        </EntityType>
+        <Association Name="fk_Id">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
+          <End Role="HealtyCertificate" Type="Self.HealtyCertificate" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HealtyCertificate">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RaceId">
+          <End Role="Race" Type="Self.Race" Multiplicity="0..1" />
+          <End Role="Animals" Type="Self.Animals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animals">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HealtyCertificateId">
+          <End Role="HealtyCertificate" Type="Self.HealtyCertificate" Multiplicity="0..1" />
+          <End Role="VaccineHealtyCertificate" Type="Self.VaccineHealtyCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealtyCertificate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VaccineHealtyCertificate">
+              <PropertyRef Name="HealtyCertificateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VaccineId">
+          <End Role="Vaccine" Type="Self.Vaccine" Multiplicity="1" />
+          <End Role="VaccineHealtyCertificate" Type="Self.VaccineHealtyCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaccine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VaccineHealtyCertificate">
+              <PropertyRef Name="VaccineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnimalSocialDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals" EntityType="Self.Animals" />
+          <EntitySet Name="HealtyCertificate" EntityType="Self.HealtyCertificate" />
+          <EntitySet Name="Race" EntityType="Self.Race" />
+          <EntitySet Name="Vaccine" EntityType="Self.Vaccine" />
+          <EntitySet Name="VaccineHealtyCertificate" EntityType="Self.VaccineHealtyCertificate" />
+          <AssociationSet Name="fk_Id" Association="Self.fk_Id">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="HealtyCertificate" EntitySet="HealtyCertificate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RaceId" Association="Self.fk_RaceId">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="Animals" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HealtyCertificateId" Association="Self.fk_HealtyCertificateId">
+            <End Role="HealtyCertificate" EntitySet="HealtyCertificate" />
+            <End Role="VaccineHealtyCertificate" EntitySet="VaccineHealtyCertificate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VaccineId" Association="Self.fk_VaccineId">
+            <End Role="Vaccine" EntitySet="Vaccine" />
+            <End Role="VaccineHealtyCertificate" EntitySet="VaccineHealtyCertificate" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AnimalSocialDbModelStoreContainer" CdmEntityContainer="AnimalSocialDbEntities">
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="AnimalSocialDbModel.Animals">
+              <MappingFragment StoreEntitySet="Animals">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="BirtOfDate" ColumnName="BirtOfDate" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealtyCertificate">
+            <EntityTypeMapping TypeName="AnimalSocialDbModel.HealtyCertificate">
+              <MappingFragment StoreEntitySet="HealtyCertificate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Race">
+            <EntityTypeMapping TypeName="AnimalSocialDbModel.Race">
+              <MappingFragment StoreEntitySet="Race">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaccine">
+            <EntityTypeMapping TypeName="AnimalSocialDbModel.Vaccine">
+              <MappingFragment StoreEntitySet="Vaccine">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="FirstPractice" ColumnName="FirstPractice" />
+                <ScalarProperty Name="Repetition" ColumnName="Repetition" />
+                <ScalarProperty Name="YearlyRepetiton" ColumnName="YearlyRepetiton" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="VaccineType" ColumnName="VaccineType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VaccineHealtyCertificate">
+            <EntityTypeMapping TypeName="AnimalSocialDbModel.VaccineHealtyCertificate">
+              <MappingFragment StoreEntitySet="VaccineHealtyCertificate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VaccineId" ColumnName="VaccineId" />
+                <ScalarProperty Name="HealtyCertificateId" ColumnName="HealtyCertificateId" />
+                <ScalarProperty Name="PracticeDate" ColumnName="PracticeDate" />
+                <ScalarProperty Name="IsPractice" ColumnName="IsPractice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
