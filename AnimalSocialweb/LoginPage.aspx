@@ -14,6 +14,7 @@
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
      <script>
+         //git deneme
          $(document).ready(function () {
              $("#LoginButton").click(function () {
                  $.ajax({
