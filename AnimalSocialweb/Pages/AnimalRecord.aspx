@@ -10,18 +10,36 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="button" id="SaveButton" class="btn btn-success">Save<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+            <label>Animal Name</label>
+            <input class="form-control" placeholder="Animal Name" id="InputAnimalName" />          
+        </div>
+        
+       <div class="form-group">
+  <label >Gender</label>
+  <select class="form-control" id="SelectGender">
+    <option value="0">Male</option>
+      <option value="1">Female</option>
+  </select>
+</div>
+
+        <div class="form-group"> 
+            <label>BirthOfDate</label>
+<input type="date" id="InputDate" > 
+</div>
+
+        <div class="form-group">
+            <button type="button" id="SaveButton" class="btn btn-default" >Save <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span></button>
         </div>
     </div>
          <div class="col-lg-6">
         <div class="form-group">
             <label>New Race</label>
             <input class="form-control" placeholder="Race Name" id="InputRaceName" />
-            
+                        
         </div>
         <div class="form-group">
             <button type="button" id="RaceSaveButton" class="btn btn-success">Add Race <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
-        </div>
+        </div>           
     </div>
 </div>
         </div>
@@ -30,6 +48,7 @@
           $("#SaveButton").prop('disabled', true);
           //$("#GenusDropDown").prop('disabled', true);
           //$("#SpeciesDropDown").prop('disabled', true);
+          
           function getRaces() {
               $.ajax({
                   type: "POST",
@@ -38,7 +57,7 @@
                   dataType: "json",
                   success: function (data) {
                       $("#RaceDropDown").html("");
-                      $("#RaceDropDown").append("<option value='-1'>Seçiniz</option>");
+                      $("#RaceDropDown").append("<option value='-1'>Please Select</option>");
                       $.each(data, function (index, data) {
                           var element = "<option value='" + data.Id + "'>" + data.Name + "</option>";
                           $("#RaceDropDown").append(element);
@@ -61,8 +80,12 @@
                       }
                   });
               });
-             
-              
+              var raceDropDown= $("#RaceDropDown").val();
+              var inputAnimalName=$("#InputAnimalName").val();
+              var selectGender=$("#SelectGender").val();
+              var inputDate = $("#InputDate").val();
+         
+
       });
      </script>
 </asp:Content>
