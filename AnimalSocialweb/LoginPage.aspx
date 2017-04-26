@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <link href="StyleSheet/LoginCss/Login.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.10.2.min.js"></script>
-
-
     <script src="Scripts/bootstrap.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>

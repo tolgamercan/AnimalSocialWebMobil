@@ -12,13 +12,17 @@ using AnimalSocialWebApi.DAL;
 
 namespace AnimalSocialWebApi.Controllers
 {
+    [Authorize]
     public class AnimalsController : ApiController
     {
+       
         private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
 
         // GET: api/Animals
         public IQueryable<Animals> GetAnimals()
         {
+            //db.Configuration.LazyLoadingEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             return db.Animals;
         }
 
@@ -27,6 +31,7 @@ namespace AnimalSocialWebApi.Controllers
         public IHttpActionResult GetAnimals(string id)
         {
             Animals animals = db.Animals.Find(id);
+           
             if (animals == null)
             {
                 return NotFound();

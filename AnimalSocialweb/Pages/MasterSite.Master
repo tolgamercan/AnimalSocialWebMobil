@@ -197,33 +197,20 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
-
+        <script src="/Assets/js/jquery.js"></script>
+    <script src="/Assets/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
         <div id="page-wrapper">
             <form id="form1" runat="server">
-
                 <div class="row">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
                     </asp:ContentPlaceHolder>
                 </div>
             </form>
-            <!-- /.container-fluid -->
-
         </div>
-        <!-- /#page-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="/Assets/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/Assets/js/bootstrap.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-
 </body>
 
 </html>

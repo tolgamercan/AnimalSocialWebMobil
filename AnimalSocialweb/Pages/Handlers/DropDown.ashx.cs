@@ -17,17 +17,15 @@ namespace AnimalSocialweb.Pages.Providers
         {
             var user = context.User.Identity as CustomIdentity;
             AnimalProcess provider = new AnimalProcess();
-            string dropDownType = context.Request.Params["ReuestType"];
+            string dropDownType = context.Request.Params["RequestType"];
+            string inputRaceName=context.Request.Params["InputRaceName"];
             var data = "";
             switch (dropDownType)
             {
-                case "TribesDropDown": data = provider.GetTribeValues(user.User.accessToken);
+                case "RaceDropDown": data = provider.GetRaceValues(user.User.accessToken);
                     context.Response.Write(data);
                     break;
-                case "GenusDropDown": data = provider.GetGenusValues(user.User.accessToken);
-                    context.Response.Write(data);
-                    break;
-                case "SpeciesDropDown": data = provider.GetSpeciesValues(user.User.accessToken);
+                case "RaceSaveButton": data = provider.AddRaceValues(user.User.accessToken, inputRaceName);
                     context.Response.Write(data);
                     break;
                 default:
