@@ -80,12 +80,18 @@
                       }
                   });
               });
-              var raceDropDown= $("#RaceDropDown").val();
-              var inputAnimalName=$("#InputAnimalName").val();
-              var selectGender=$("#SelectGender").val();
-              var inputDate = $("#InputDate").val();
-         
-
+             
+              $(document).change(function () {
+               
+                  var raceDropDown = $("#RaceDropDown").val();
+                  var inputAnimalName = $("#InputAnimalName").val();
+                  var selectGender = $("#SelectGender").val();
+                  var inputDate = $("#InputDate").val();
+                  if (raceDropDown != "" && inputAnimalName != "" && selectGender != null && inputDate != "") {
+                      console.log("tolga");
+                  }
+              });
+             
       });
      </script>
 </asp:Content>
