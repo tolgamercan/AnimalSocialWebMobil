@@ -16,7 +16,7 @@
         
        <div class="form-group">
   <label >Gender</label>
-  <select class="form-control" id="SelectGender" required="required">
+  <select class="form-control" id="SelectGender"  required="required">
     <option value="0">Male</option>
       <option value="1">Female</option>
   </select>
@@ -88,10 +88,15 @@
                   var selectGender = $("#SelectGender").val();
                   var inputDate = $("#InputDate").val();
                   if (raceDropDown != "" && inputAnimalName != "" && selectGender != null && inputDate != "") {
+                     
                       $.ajax({
                           type: "POST",
                           url: "Handlers/Dropdown.ashx",
-                          data: "&raceId=" + raceId + "&inputAnimalName=" + inputAnimalName + "&selectGender=" + selectGender + "&inputDate=" + inputDate
+                          data: "&RequestType=AnimalPost"+"&raceId=" + raceId + "&inputAnimalName=" + inputAnimalName + "&selectGender=" + selectGender + "&inputDate=" + inputDate,
+                          dataType: "json",
+                          success: function (data) {
+
+                          }
                       });
                   }
               });
