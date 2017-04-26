@@ -6,17 +6,17 @@
     <div class="col-lg-6">
         <div class="form-group">
             <label>Race</label>
-            <select class="form-control" id="RaceDropDown">
+            <select class="form-control" id="RaceDropDown" required="required">
             </select>
         </div>
         <div class="form-group">
             <label>Animal Name</label>
-            <input class="form-control" placeholder="Animal Name" id="InputAnimalName" />          
+            <input class="form-control" placeholder="Animal Name" id="InputAnimalName" required="required" />          
         </div>
         
        <div class="form-group">
   <label >Gender</label>
-  <select class="form-control" id="SelectGender">
+  <select class="form-control" id="SelectGender" required="required">
     <option value="0">Male</option>
       <option value="1">Female</option>
   </select>
@@ -24,7 +24,7 @@
 
         <div class="form-group"> 
             <label>BirthOfDate</label>
-<input type="date" id="InputDate" > 
+<input type="date" id="InputDate" required="required" > 
 </div>
 
         <div class="form-group">
@@ -82,16 +82,24 @@
               });
              
               $(document).change(function () {
-               
-                  var raceDropDown = $("#RaceDropDown").val();
+                  var raceId = $("#RaceDropDown").val();
+                  //var raceDropDown = $("#RaceDropDown option:selected").text();
                   var inputAnimalName = $("#InputAnimalName").val();
                   var selectGender = $("#SelectGender").val();
                   var inputDate = $("#InputDate").val();
                   if (raceDropDown != "" && inputAnimalName != "" && selectGender != null && inputDate != "") {
-                      console.log("tolga");
+                      $.ajax({
+                          type: "POST",
+                          url: "Handlers/Dropdown.ashx",
+                          data: "&raceId=" + raceId + "&inputAnimalName=" + inputAnimalName + "&selectGender=" + selectGender + "&inputDate=" + inputDate
+                      });
                   }
               });
              
       });
      </script>
+</asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 </asp:Content>
