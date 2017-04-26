@@ -210,7 +210,12 @@
                 </div>
             </form>
         </div>
+        <asp:ContentPlaceHolder ID="ScriptPlaceHolder" runat="server">
+
+        </asp:ContentPlaceHolder>
     </div>
+
+
 </body>
 
 </html>
