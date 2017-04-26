@@ -1,27 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterSite.Master" AutoEventWireup="true" CodeBehind="AnimalRecord.aspx.cs" Inherits="AnimalSocialweb.AnimalRecord" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="col-lg-6">
-    <div class="form-group">                              
-                        <label>Tribes</label>
-                        <select class="form-control" id="TribeDropDown" >
-                            
-                        </select>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>Tribes</label>
+            <select class="form-control" id="TribeDropDown">
+            </select>
         </div>
-     <div class="form-group "  >                              
-                        <label>Genus</label>
-                        <select  class="form-control" id="GenusDropDown"></select> 
+        <div class="form-group ">
+            <label>Genus</label>
+            <select class="form-control" id="GenusDropDown"></select>
         </div>
-    <div class="form-group"  >                              
-                        <label>Species</label>
-                        <select class="form-control" id="SpeciesDropDown"></select>
+        <div class="form-group">
+            <label>Species</label>
+            <select class="form-control" id="SpeciesDropDown"></select>
         </div>
-    <div class="form-group">    
-     <button type="button" id="TribesNextButton" class="btn btn-success">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-  </div>
-</div>
-    
-<%--  <script>
+        <div class="form-group">
+            <button type="button" id="TribesNextButton" class="btn btn-success">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+        </div>
+    </div>
+
+    <%--  <script>
       $(document).ready(function () {
           $("#TribesNextButton").prop('disabled', true);
           //$("#GenusDropDown").prop('disabled', true);
