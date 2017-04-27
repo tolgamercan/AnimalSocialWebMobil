@@ -6,17 +6,18 @@
     <div class="col-lg-6">
         <div class="form-group">
             <label>Race</label>
-            <select class="form-control" id="RaceDropDown" required="required">
+            <select class="form-control" id="RaceDropDown" name="RaceDropDown" required="required" >
             </select>
         </div>
         <div class="form-group">
             <label>Animal Name</label>
-            <input class="form-control" placeholder="Animal Name" id="InputAnimalName" required="required" />          
+            <input class="form-control" placeholder="Animal Name" id="InputAnimalName" name="InputAnimalName" maxlength="3" required="required" />          
         </div>
         
        <div class="form-group">
   <label >Gender</label>
-  <select class="form-control" id="SelectGender"  required="required">
+  <select class="form-control" id="SelectGender" name="SelectGender"  required="required">
+      <option value="-1">Select</option>
     <option value="0">Male</option>
       <option value="1">Female</option>
   </select>
@@ -24,8 +25,8 @@
 
         <div class="form-group"> 
             <label>BirthOfDate</label>
-<input type="date" id="InputDate" required="required" > 
-</div>
+            <input type="date" id="InputDate" required="required" > 
+            </div>
 
         <div class="form-group">
             <button type="button" id="SaveButton" class="btn btn-default" >Save <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span></button>
@@ -46,6 +47,15 @@
       <script>
       $(document).ready(function () {
           $("#SaveButton").prop('disabled', true);
+          
+          $("#form1").validate({
+              rules: {
+                  RaceDropDown: {
+                      required: true,
+                      min: 1
+                  }
+              }
+          });
           //$("#GenusDropDown").prop('disabled', true);
           //$("#SpeciesDropDown").prop('disabled', true);
           
@@ -82,22 +92,26 @@
               });
              
               $(document).change(function () {
-                  var raceId = $("#RaceDropDown").val();
+                  var status = $("#form1").valid(); console.log(status);
+                  var raceId = $("#RaceDropDown").val()*1;
                   //var raceDropDown = $("#RaceDropDown option:selected").text();
                   var inputAnimalName = $("#InputAnimalName").val();
                   var selectGender = $("#SelectGender").val();
                   var inputDate = $("#InputDate").val();
-                  if (raceDropDown != "" && inputAnimalName != "" && selectGender != null && inputDate != "") {
-                     
-                      $.ajax({
-                          type: "POST",
-                          url: "Handlers/Dropdown.ashx",
-                          data: "&RequestType=AnimalPost"+"&raceId=" + raceId + "&inputAnimalName=" + inputAnimalName + "&selectGender=" + selectGender + "&inputDate=" + inputDate,
-                          dataType: "json",
-                          success: function (data) {
+                  if (status) {
+                      $("#SaveButton").prop('disabled', false);
+                      $("#SaveButton").click(function () {
+                          $.ajax({
+                              type: "POST",
+                              url: "Handlers/Dropdown.ashx",
+                              data: "&RequestType=AnimalPost" + "&raceId=" + raceId + "&inputAnimalName=" + inputAnimalName + "&selectGender=" + selectGender + "&inputDate=" + inputDate,
+                              dataType: "json",
+                              success: function (data) {
 
-                          }
+                              }
+                          });
                       });
+                     
                   }
               });
              
@@ -106,6 +120,6 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>--%>
 
 </asp:Content>

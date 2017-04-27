@@ -19,7 +19,10 @@ namespace AnimalSocialweb.Pages.Providers
             AnimalProcess provider = new AnimalProcess();
             string dropDownType = context.Request.Params["RequestType"];
             string inputRaceName=context.Request.Params["InputRaceName"];
-            
+            string raceId = context.Request.Params["raceId"];
+            string inputAnimalName = context.Request.Params["inputAnimalName"];
+            string selectGender = context.Request.Params["selectGender"];
+            string inputDate = context.Request.Params["inputDate"];
             var data = "";
             switch (dropDownType)
             {
@@ -29,7 +32,8 @@ namespace AnimalSocialweb.Pages.Providers
                 case "RaceSaveButton": data = provider.AddRaceValues(user.User.accessToken, inputRaceName);
                     context.Response.Write(data);
                     break;
-                case "AnimalPost":data=provider.AddAnimalValues(user.User.accessToken,)
+                case "AnimalPost": data = provider.AddAnimalValues(user.User.accessToken, raceId, inputAnimalName, selectGender, inputDate);
+                    break;
                 default:
                     break;
             }

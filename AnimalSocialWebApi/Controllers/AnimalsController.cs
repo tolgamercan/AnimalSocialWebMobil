@@ -12,26 +12,21 @@ using AnimalSocialWebApi.DAL;
 
 namespace AnimalSocialWebApi.Controllers
 {
-    [Authorize]
     public class AnimalsController : ApiController
     {
-       
         private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
 
         // GET: api/Animals
         public IQueryable<Animals> GetAnimals()
         {
-            //db.Configuration.LazyLoadingEnabled = false;
-            //db.Configuration.ProxyCreationEnabled = false;
             return db.Animals;
         }
 
         // GET: api/Animals/5
         [ResponseType(typeof(Animals))]
-        public IHttpActionResult GetAnimals(string id)
+        public IHttpActionResult GetAnimals(int id)
         {
             Animals animals = db.Animals.Find(id);
-           
             if (animals == null)
             {
                 return NotFound();
@@ -42,7 +37,7 @@ namespace AnimalSocialWebApi.Controllers
 
         // PUT: api/Animals/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAnimals(string id, Animals animals)
+        public IHttpActionResult PutAnimals(int id, Animals animals)
         {
             if (!ModelState.IsValid)
             {
@@ -85,29 +80,14 @@ namespace AnimalSocialWebApi.Controllers
             }
 
             db.Animals.Add(animals);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (AnimalsExists(animals.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = animals.Id }, animals);
         }
 
         // DELETE: api/Animals/5
         [ResponseType(typeof(Animals))]
-        public IHttpActionResult DeleteAnimals(string id)
+        public IHttpActionResult DeleteAnimals(int id)
         {
             Animals animals = db.Animals.Find(id);
             if (animals == null)
@@ -130,7 +110,7 @@ namespace AnimalSocialWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AnimalsExists(string id)
+        private bool AnimalsExists(int id)
         {
             return db.Animals.Count(e => e.Id == id) > 0;
         }
