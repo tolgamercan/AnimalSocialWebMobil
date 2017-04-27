@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
     <script src="Scripts/LoginJS.js"></script>
     <script>
-        //git deneme
+        //git denemesdfsdfgs
         $(document).ready(function () {
             $("#LoginButton").click(function () {
                 var lg_username = $("#lg_username").val();
