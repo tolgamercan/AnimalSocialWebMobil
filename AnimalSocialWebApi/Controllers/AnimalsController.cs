@@ -12,6 +12,7 @@ using AnimalSocialWebApi.DAL;
 
 namespace AnimalSocialWebApi.Controllers
 {
+    [Authorize]
     public class AnimalsController : ApiController
     {
         private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
