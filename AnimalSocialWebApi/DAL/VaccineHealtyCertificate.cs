@@ -16,7 +16,7 @@ namespace AnimalSocialWebApi.DAL
     {
         public int Id { get; set; }
         public int VaccineId { get; set; }
-        public Nullable<int> HealtyCertificateId { get; set; }
+        public string HealtyCertificateId { get; set; }
         public Nullable<System.DateTime> PracticeDate { get; set; }
         public Nullable<bool> IsPractice { get; set; }
     

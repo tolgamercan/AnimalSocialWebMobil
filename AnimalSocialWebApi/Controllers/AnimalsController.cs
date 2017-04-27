@@ -12,7 +12,6 @@ using AnimalSocialWebApi.DAL;
 
 namespace AnimalSocialWebApi.Controllers
 {
-    [Authorize]
     public class AnimalsController : ApiController
     {
         private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
@@ -25,7 +24,7 @@ namespace AnimalSocialWebApi.Controllers
 
         // GET: api/Animals/5
         [ResponseType(typeof(Animals))]
-        public IHttpActionResult GetAnimals(int id)
+        public IHttpActionResult GetAnimals(string id)
         {
             Animals animals = db.Animals.Find(id);
             if (animals == null)
@@ -38,7 +37,7 @@ namespace AnimalSocialWebApi.Controllers
 
         // PUT: api/Animals/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAnimals(int id, Animals animals)
+        public IHttpActionResult PutAnimals(string id, Animals animals)
         {
             if (!ModelState.IsValid)
             {
@@ -81,14 +80,29 @@ namespace AnimalSocialWebApi.Controllers
             }
 
             db.Animals.Add(animals);
-            db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (AnimalsExists(animals.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = animals.Id }, animals);
         }
 
         // DELETE: api/Animals/5
         [ResponseType(typeof(Animals))]
-        public IHttpActionResult DeleteAnimals(int id)
+        public IHttpActionResult DeleteAnimals(string id)
         {
             Animals animals = db.Animals.Find(id);
             if (animals == null)
@@ -111,7 +125,7 @@ namespace AnimalSocialWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AnimalsExists(int id)
+        private bool AnimalsExists(string id)
         {
             return db.Animals.Count(e => e.Id == id) > 0;
         }

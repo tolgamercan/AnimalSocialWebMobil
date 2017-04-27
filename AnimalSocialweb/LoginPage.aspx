@@ -17,17 +17,26 @@
         //git deneme
         $(document).ready(function () {
             $("#LoginButton").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "LoginHandler.ashx",
-                    data: "email=" + $("#lg_username").val() + "&password=" + $("#lg_password").val() + "&processType=login",
-                    dataType: "json",
-                    success: function (data) {
-                        if (data == 1) {
-                            document.location = "Pages/MainPage.aspx";
+                var lg_username = $("#lg_username").val();
+                var lg_password = $("#lg_password").val();
+                if (lg_password != "" && lg_username != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "LoginHandler.ashx",
+                        data: "email=" + $("#lg_username").val() + "&password=" + $("#lg_password").val() + "&processType=login",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data == 1) {
+                                document.location = "Pages/MainPage.aspx";
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    alert("Fill fields");
+                }
+
             });
         });
         //5555

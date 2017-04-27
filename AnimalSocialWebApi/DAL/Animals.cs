@@ -14,7 +14,7 @@ namespace AnimalSocialWebApi.DAL
     
     public partial class Animals
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public Nullable<bool> Gender { get; set; }
         public Nullable<int> RaceId { get; set; }
