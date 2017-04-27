@@ -2,9 +2,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
-    <div class="row">
+    <div class="row" id="ProcessPanel">
     <div class="col-lg-6">
         <div class="form-group">
+            
             <label>Race</label>
             <select class="form-control" id="RaceDropDown" name="RaceDropDown" required="required" >
             </select>
@@ -22,6 +23,7 @@
       <option value="1">Female</option>
   </select>
 </div>
+        
 
         <div class="form-group"> 
             <label>BirthOfDate</label>
@@ -33,21 +35,28 @@
         </div>
     </div>
          <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" id="AddRacePanel" >
             <label>New Race</label>
-            <input class="form-control" placeholder="Race Name" id="InputRaceName" />
+            <input class="form-control" placeholder="Race Name" id="InputRaceName"  />
                         
         </div>
+            
         <div class="form-group">
             <button type="button" id="RaceSaveButton" class="btn btn-success">Add Race <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
-        </div>           
+        </div>      
+             <div class="form-group">
+            <label>Animal QrCode</label>
+            <div  id="qrCode" style="width:300px; height:300px;">
+             </div>  
+                </div>
+                 
     </div>
 </div>
         </div>
       <script>
       $(document).ready(function () {
           $("#SaveButton").prop('disabled', true);
-          
+     
           $("#form1").validate({
               rules: {
                   RaceDropDown: {
@@ -77,6 +86,7 @@
 
           }
           getRaces();
+
               $("#RaceSaveButton").click(function () {
                   $.ajax({
                       type: "POST",
@@ -100,16 +110,24 @@
                   var inputDate = $("#InputDate").val();
                   if (status) {
                       $("#SaveButton").prop('disabled', false);
+                                         
                       $("#SaveButton").click(function () {
+                          $("#InputRaceName").prop("disabled", true);
+                          $("#RaceSaveButton").prop("disabled", true);
                           $.ajax({
                               type: "POST",
                               url: "Handlers/Dropdown.ashx",
                               data: "&RequestType=AnimalPost" + "&raceId=" + raceId + "&inputAnimalName=" + inputAnimalName + "&selectGender=" + selectGender + "&inputDate=" + inputDate,
                               dataType: "json",
                               success: function (data) {
-
+                                  $("#AddRacePanel").css("visibility", "hidden");
+                                  $("#RaceSaveButton").css("visibility", "hidden");                    
+                                  $("#qrCode").qrcode({
+                                      text:"http://logicyazilim.com/?id="+data.Id
+                                  });
                               }
                           });
+                          
                       });
                      
                   }

@@ -20,6 +20,8 @@ namespace AnimalSocialWebApi.Controllers
         // GET: api/Races
         public IQueryable<Race> GetRace()
         {
+            db.Configuration.LazyLoadingEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false;
             return db.Race;
         }
 

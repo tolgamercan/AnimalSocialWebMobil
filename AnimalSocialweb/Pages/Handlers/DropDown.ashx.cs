@@ -33,6 +33,7 @@ namespace AnimalSocialweb.Pages.Providers
                     context.Response.Write(data);
                     break;
                 case "AnimalPost": data = provider.AddAnimalValues(user.User.accessToken, raceId, inputAnimalName, selectGender, inputDate);
+                    context.Response.Write(data);
                     break;
                 default:
                     break;

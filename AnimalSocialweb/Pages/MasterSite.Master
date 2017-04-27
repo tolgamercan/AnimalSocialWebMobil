@@ -161,10 +161,10 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="AnimalRecord.aspx"><i class="fa fa-fw fa-dashboard"></i>Hayvan Kayıt</a>
+                        <a href="AnimalRecord.aspx"><i class="fa fa-fw fa-bar-chart-o"></i>Hayvan Kayıt</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i>Charts</a>
+                        <a href="MainPage.aspx"><i class="fa fa-fw fa-dashboard"></i>Charts</a>
                     </li>
                     <li>
                         <a href="tables.html"><i class="fa fa-fw fa-table"></i>Tables</a>
@@ -205,6 +205,8 @@
 
     <script src="/Assets/js/bootstrap.min.js"></script>
     <script src="/Assets/js/localization/messages_tr.min.js""></script>
+    <script src="/Scripts/jquery.qrcode.min.js"></script>
+    <script src="/Scripts/qrcode.min.js"></script>
    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>--%>
         <div id="page-wrapper">
             <form id="form1" runat="server">
