@@ -34,6 +34,35 @@
     <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        #waitScreen
+        {
+            z-index: 9999;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+           
+            
+        }
+        #waitGif{
+            width:480px;
+            height:271px;
+            margin: auto;
+            left: 0;
+            right: 0;
+            display: block;
+        }
+        #centerCell
+        {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -161,19 +190,19 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="AnimalRecord.aspx"><i class="fa fa-fw fa-bar-chart-o"></i>Hayvan Kayıt</a>
+                        <a href="AnimalRecord.aspx"><i class="fa fa-paw fa-bar-chart-o"></i>Hayvan Kayıt</a>
                     </li>
                     <li>
-                        <a href="MainPage.aspx"><i class="fa fa-fw fa-dashboard"></i>Charts</a>
+                        <a href="MainPage.aspx"><i class="fa fa-paw fa-dashboard"></i>İstatistikler</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i>Tables</a>
+                        <a href="AddVaccine.aspx"><i class="fa fa-fw fa-table"></i>Aşı Ekle</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i>Forms</a>
+                        <a href="AddHealtyCertificate.aspx"><i class="fa fa-fw fa-edit"></i>Karne Oluştur</a>
                     </li>
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i>Bootstrap Elements</a>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i>Karne Güncelle</a>
                     </li>
                     <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i>Bootstrap Grid</a>
@@ -222,7 +251,12 @@
         </asp:ContentPlaceHolder>
     </div>
 
+    <div id="waitScreen" >
+        <div id="centerCell">
+            <img src="https://media.giphy.com/media/SmpV6sKa1vBxm/giphy.gif" id="waitGif" />
+        </div>
 
+    </div>
 </body>
 
 </html>

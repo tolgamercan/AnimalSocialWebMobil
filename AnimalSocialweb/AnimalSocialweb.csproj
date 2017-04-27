@@ -236,6 +236,8 @@
     <Content Include="Assets\js\localization\methods_nl.min.js" />
     <Content Include="Assets\js\localization\methods_pt.js" />
     <Content Include="Assets\js\localization\methods_pt.min.js" />
+    <Content Include="Pages\AddHealtyCertificate.aspx" />
+    <Content Include="Pages\AddVaccine.aspx" />
     <Content Include="Pages\AnimalRecord.aspx" />
     <Content Include="Assets\css\bootstrap-rtl.css" />
     <Content Include="Assets\css\bootstrap-rtl.min.css" />
@@ -364,6 +366,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\AnimalProcess.cs" />
+    <Compile Include="Pages\AddHealtyCertificate.aspx.cs">
+      <DependentUpon>AddHealtyCertificate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddHealtyCertificate.aspx.designer.cs">
+      <DependentUpon>AddHealtyCertificate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddVaccine.aspx.cs">
+      <DependentUpon>AddVaccine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AddVaccine.aspx.designer.cs">
+      <DependentUpon>AddVaccine.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AnimalRecord.aspx.cs">
       <DependentUpon>AnimalRecord.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
