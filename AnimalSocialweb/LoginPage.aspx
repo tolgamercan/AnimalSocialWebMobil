@@ -36,37 +36,48 @@
         });
         //5555
     </script>
+    <style>
+        body {
+            float: left;
+            width: 100%;
+            display: table;
+            align-content: center;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-form-1">
-        <form id="form1" runat="server" class="text-left">
-            <div class="login-form-main-message"></div>
-            <div class="main-login-form">
-                <div class="login-group">
-                    <div class="form-group">
-                        <label for="lg_username" class="sr-only">Username</label>
-                        <asp:TextBox runat="server" type="text" CssClass="form-control" ID="lg_username" name="lg_username" placeholder="username" />
-                    </div>
-                    <div class="form-group">
-                        <label for="lg_password" class="sr-only">Password</label>
-                        <asp:TextBox runat="server" type="password" CssClass="form-control" ID="lg_password" name="lg_password" placeholder="password" />
-                    </div>
-                    <div class="form-group login-group-checkbox">
+    <div style="display: table-cell; vertical-align: middle;">
+        <div class="login-form-1" style="display:block;margin:auto">
+            <form id="form1" runat="server" class="text-left">
+                <div class="login-form-main-message"></div>
+                <div class="main-login-form">
+                    <div class="login-group">
+                        <div class="form-group">
+                            <label for="lg_username" class="sr-only">Username</label>
+                            <asp:TextBox runat="server" type="text" CssClass="form-control" ID="lg_username" name="lg_username" placeholder="username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_password" class="sr-only">Password</label>
+                            <asp:TextBox runat="server" type="password" CssClass="form-control" ID="lg_password" name="lg_password" placeholder="password" />
+                        </div>
+                        <div class="form-group login-group-checkbox">
 
-                        <asp:CheckBox runat="server" ID="lg_remember" name="lg_remember" />
-                        <label for="lg_remember">remember</label>
+                            <asp:CheckBox runat="server" ID="lg_remember" name="lg_remember" />
+                            <label for="lg_remember">remember</label>
+                        </div>
                     </div>
+
+                    <button type="button" id="LoginButton" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
-
-                <button type="button" id="LoginButton" class="login-button"><i class="fa fa-chevron-right"></i></button>
-            </div>
-            <div class="etc-login-form">
-                <p>forgot your password? <a href="#">click here</a></p>
-                <p>new user? <a href="RegisterPage.aspx">create new account</a></p>
-            </div>
-        </form>
+                <div class="etc-login-form">
+                    <p>forgot your password? <a href="#">click here</a></p>
+                    <p>new user? <a href="RegisterPage.aspx">create new account</a></p>
+                </div>
+            </form>
+        </div>
     </div>
-    <div id="waitScreen" ></div>
+    <div id="waitScreen"></div>
 </body>
 </html>
 

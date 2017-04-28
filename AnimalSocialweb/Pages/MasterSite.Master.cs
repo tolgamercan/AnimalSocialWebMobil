@@ -18,8 +18,8 @@ namespace AnimalSocialweb
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            var user = Page.User.Identity as CustomIdentity;
-            userEmailLabel.Text= user.User.Name;
+            //var user = Page.User.Identity as CustomIdentity;
+            //userEmailLabel.Text= user.User.Name;
         }
     }
 }
