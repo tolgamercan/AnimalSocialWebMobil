@@ -11,12 +11,14 @@
     <script src="Scripts/jquery-1.10.2.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css' />
+    <link href="/Assets/css/wait.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
     <script src="Scripts/LoginJS.js"></script>
     <script>
         //git deneme
         $(document).ready(function () {
             $("#LoginButton").click(function () {
+                $("#waitScreen").fadeIn();
                 $.ajax({
                     type: "POST",
                     url: "LoginHandler.ashx",
@@ -27,7 +29,9 @@
                             document.location = "Pages/MainPage.aspx";
                         }
                     }
-                });
+                }).complete(function () {
+                    $("#waitScreen").fadeOut();
+                });;;
             });
         });
         //5555
@@ -62,6 +66,7 @@
             </div>
         </form>
     </div>
+    <div id="waitScreen" ></div>
 </body>
 </html>
 

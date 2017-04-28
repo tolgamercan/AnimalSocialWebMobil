@@ -31,38 +31,12 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+    <link href="/Assets/css/wait.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style>
-        #waitScreen
-        {
-            z-index: 9999;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100vw;
-            height: 100vh;
-            display: block;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-           
-            
-        }
-        #waitGif{
-            width:480px;
-            height:271px;
-            margin: auto;
-            left: 0;
-            right: 0;
-            display: block;
-        }
-        #centerCell
-        {
-            display: table-cell;
-            vertical-align: middle;
-        }
-    </style>
+   
 </head>
 
 <body>
@@ -79,7 +53,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><i class="fa fa-paw">AnimalSocialVet</i></a>
+                <a class="navbar-brand" href="MainPage.aspx"><i class="fa fa-paw">AnimalSocialVet</i></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -251,12 +225,8 @@
         </asp:ContentPlaceHolder>
     </div>
 
-    <div id="waitScreen" >
-        <div id="centerCell">
-            <img src="https://media.giphy.com/media/SmpV6sKa1vBxm/giphy.gif" id="waitGif" />
-        </div>
-
-    </div>
+    <div id="waitScreen" ></div>
+    
 </body>
 
 </html>

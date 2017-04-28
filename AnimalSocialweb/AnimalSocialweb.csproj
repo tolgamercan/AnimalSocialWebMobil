@@ -103,6 +103,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\loading.gif" />
+    <Content Include="Assets\css\wait.css" />
     <Content Include="Assets\js\jquery.validate.min.js" />
     <Content Include="Assets\js\lib\jquery-1.11.1.js" />
     <Content Include="Assets\js\lib\jquery-1.7.2.js" />

@@ -69,6 +69,7 @@
           //$("#SpeciesDropDown").prop('disabled', true);
           
           function getRaces() {
+              $("#waitScreen").fadeIn();
               $.ajax({
                   type: "POST",
                   url: "Handlers/DropDown.ashx",
@@ -82,12 +83,15 @@
                           $("#RaceDropDown").append(element);
                       });
                   }
+              }).complete(function () {
+                  $("#waitScreen").fadeOut();
               });
 
           }
           getRaces();
 
-              $("#RaceSaveButton").click(function () {
+          $("#RaceSaveButton").click(function () {
+              $("#waitScreen").fadeIn();
                   $.ajax({
                       type: "POST",
                       url: "Handlers/Dropdown.ashx",
@@ -98,7 +102,9 @@
                           var element = "<option value='"+data.Id+"'>" + data.Name + "</option>";
                           $("#RaceDropDown").append(element);
                       }
-                  });
+                  }).complete(function () {
+                      $("#waitScreen").fadeOut();
+                  });;
               });
              
               $(document).change(function () {
