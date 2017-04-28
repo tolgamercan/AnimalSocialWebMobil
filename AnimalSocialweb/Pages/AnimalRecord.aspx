@@ -6,11 +6,17 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label>Race</label>
-                    <select class="form-control" id="RaceDropDown" name="RaceDropDown" data-rule-min="1" required="required">
+                <div class="form-group input-group" style="width: 100%;">
+                    
+                      <span class="input-group-addon" id="RaceAddButton" style="cursor: pointer;display: block;width: 30px;float: left;height: 34px;padding: 9px 0px 0 0;">+</span>
+                    
+                    <select class="form-control" id="RaceDropDown" name="RaceDropDown" data-rule-min="1" style="width: calc(100% - 30px);" required="required">
                         
                     </select>
-                    <button type="button" id="RaceAddButton" class="btn btn-success" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
+                    <%--<button type="button" id="RaceAddButton" class="btn btn-success" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>--%>
                 
+                </div>
+
                 </div>
                 
                 <div class="form-group">
@@ -20,8 +26,8 @@
 
                 <div class="form-group">
                     <label>Gender</label>
-                    <select class="form-control" id="SelectGender" name="SelectGender" <%--data-rule-min="1"--%> required="required">
-                        <option>Select</option>
+                    <select class="form-control" id="SelectGender" name="SelectGender" data-rule-min="0" required="required">
+                        <option value="-1">Select</option>
                         <option value="0">Male</option>
                         <option value="1">Female</option>
                     </select>
@@ -30,7 +36,7 @@
 
                 <div class="form-group">
                     <label>BirthOfDate</label>
-                    <input type="date" id="InputDate" required="required">
+                    <input type="date" class="form-control" id="InputDate" required="required">
                 </div>
 
                 <div class="form-group">
@@ -106,7 +112,7 @@
                     dataType: "json",
                     success: function (data) {
                         $("#RaceDropDown").html("");
-                        $("#RaceDropDown").append("<option>Please Select</option>");
+                        $("#RaceDropDown").append("<option value='-1'>Please Select</option>");
                         $.each(data, function (index, data) {
                             var element = "<option value='" + data.Id + "'>" + data.Name + "</option>";
                             $("#RaceDropDown").append(element);
@@ -163,8 +169,9 @@
                         {
                             swal({
                                 title: "Save",
+                                imageUrl: "http://t4t5.github.io/sweetalert/example/images/thumbs-up.jpg",
                                 text: "Saving",
-                                type: "info",
+                                //type: "info",
                                 showCancelButton: true,
                                 closeOnConfirm: false,
                                 showLoaderOnConfirm: true,
@@ -182,8 +189,8 @@
                                     $("#qrCode").html("").qrcode({
                                         text: "http://logicyazilim.com/?animalId=" + data.Id
                                     });
-                                    $("#SelectGender").val(-1);
-                                    $("#RaceDropDown").val(-1);
+                                    $("#SelectGender").val("-1");
+                                    $("#RaceDropDown").val("-1");
                                     $("#InputAnimalName").val("");
                                     $("#InputDate").val("");
                                     swal("OK!", "Record saved!", "success");
