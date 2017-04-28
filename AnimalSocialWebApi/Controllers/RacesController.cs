@@ -12,6 +12,7 @@ using AnimalSocialWebApi.DAL;
 
 namespace AnimalSocialWebApi.Controllers
 {
+    [Authorize]
     public class RacesController : ApiController
     {
         private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
@@ -80,7 +81,7 @@ namespace AnimalSocialWebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            
             db.Race.Add(race);
             db.SaveChanges();
 

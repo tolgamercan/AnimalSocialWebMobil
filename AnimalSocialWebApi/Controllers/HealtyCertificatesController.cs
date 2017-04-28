@@ -12,6 +12,7 @@ using AnimalSocialWebApi.DAL;
 
 namespace AnimalSocialWebApi.Controllers
 {
+    [Authorize]
     public class HealtyCertificatesController : ApiController
     {
         private AnimalSocialDbEntities db = new AnimalSocialDbEntities();
@@ -24,7 +25,7 @@ namespace AnimalSocialWebApi.Controllers
 
         // GET: api/HealtyCertificates/5
         [ResponseType(typeof(HealtyCertificate))]
-        public IHttpActionResult GetHealtyCertificate(string id)
+        public IHttpActionResult GetHealtyCertificate(int id)
         {
             HealtyCertificate healtyCertificate = db.HealtyCertificate.Find(id);
             if (healtyCertificate == null)
@@ -37,7 +38,7 @@ namespace AnimalSocialWebApi.Controllers
 
         // PUT: api/HealtyCertificates/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutHealtyCertificate(string id, HealtyCertificate healtyCertificate)
+        public IHttpActionResult PutHealtyCertificate(int id, HealtyCertificate healtyCertificate)
         {
             if (!ModelState.IsValid)
             {
@@ -102,7 +103,7 @@ namespace AnimalSocialWebApi.Controllers
 
         // DELETE: api/HealtyCertificates/5
         [ResponseType(typeof(HealtyCertificate))]
-        public IHttpActionResult DeleteHealtyCertificate(string id)
+        public IHttpActionResult DeleteHealtyCertificate(int id)
         {
             HealtyCertificate healtyCertificate = db.HealtyCertificate.Find(id);
             if (healtyCertificate == null)
@@ -125,7 +126,7 @@ namespace AnimalSocialWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool HealtyCertificateExists(string id)
+        private bool HealtyCertificateExists(int id)
         {
             return db.HealtyCertificate.Count(e => e.Id == id) > 0;
         }

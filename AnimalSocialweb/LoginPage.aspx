@@ -14,29 +14,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
     <script src="Scripts/LoginJS.js"></script>
     <script>
-        //git denemesdfsdfgs
+        //git deneme
         $(document).ready(function () {
             $("#LoginButton").click(function () {
-                var lg_username = $("#lg_username").val();
-                var lg_password = $("#lg_password").val();
-                if (lg_password != "" && lg_username != "") {
-                    $.ajax({
-                        type: "POST",
-                        url: "LoginHandler.ashx",
-                        data: "email=" + $("#lg_username").val() + "&password=" + $("#lg_password").val() + "&processType=login",
-                        dataType: "json",
-                        success: function (data) {
-                            if (data == 1) {
-                                document.location = "Pages/MainPage.aspx";
-                            }
+                $.ajax({
+                    type: "POST",
+                    url: "LoginHandler.ashx",
+                    data: "email=" + $("#lg_username").val() + "&password=" + $("#lg_password").val() + "&processType=login",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == 1) {
+                            document.location = "Pages/MainPage.aspx";
                         }
-                    });
-                }
-                else
-                {
-                    alert("Fill fields");
-                }
-
+                    }
+                });
             });
         });
         //5555

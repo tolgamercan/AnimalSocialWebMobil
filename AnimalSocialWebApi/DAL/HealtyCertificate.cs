@@ -20,7 +20,7 @@ namespace AnimalSocialWebApi.DAL
             this.VaccineHealtyCertificate = new HashSet<VaccineHealtyCertificate>();
         }
     
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Comment { get; set; }
     
         public virtual Animals Animals { get; set; }
