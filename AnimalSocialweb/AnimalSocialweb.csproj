@@ -238,6 +238,9 @@
     <Content Include="Assets\js\localization\methods_nl.min.js" />
     <Content Include="Assets\js\localization\methods_pt.js" />
     <Content Include="Assets\js\localization\methods_pt.min.js" />
+    <Content Include="Assets\js\plugins\swal\sweetalert-dev.js" />
+    <Content Include="Assets\js\plugins\swal\sweetalert.css" />
+    <Content Include="Assets\js\plugins\swal\sweetalert.min.js" />
     <Content Include="Pages\AddHealtyCertificate.aspx" />
     <Content Include="Pages\AddVaccine.aspx" />
     <Content Include="Pages\AnimalRecord.aspx" />

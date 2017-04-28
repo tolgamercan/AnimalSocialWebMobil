@@ -211,6 +211,8 @@
     <script src="/Assets/js/localization/messages_tr.min.js""></script>
     <script src="/Scripts/jquery.qrcode.min.js"></script>
     <script src="/Scripts/qrcode.min.js"></script>
+    <script src="/Assets/js/plugins/swal/sweetalert.min.js"></script>
+    <link href="/Assets/js/plugins/swal/sweetalert.css" rel="stylesheet" />
    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>--%>
         <div id="page-wrapper">
             <form id="form1" runat="server">
